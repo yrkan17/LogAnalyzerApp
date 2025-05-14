@@ -6,6 +6,8 @@ using LogAnalyzerApp.Services;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 
 namespace LogAnalyzerApp.ViewModels;
 
@@ -15,15 +17,34 @@ public partial class MainWindowViewModel : ViewModelBase
 
     private readonly string logFilePath = "/var/log/syslog"; // путь к syslog
 
-    [ObservableProperty]
-    private ObservableCollection<SyslogEntry> entries = new ObservableCollection<SyslogEntry>();
+    public ObservableCollection<LogSeverityFilter> SeverityOptions { get; } = new()
+    {
+        new LogSeverityFilter { DisplayName = "Все", SeverityValue = null },
+        new LogSeverityFilter { DisplayName = "Информация", SeverityValue = "info" },
+        new LogSeverityFilter { DisplayName = "Предупреждение", SeverityValue = "warning" },
+        new LogSeverityFilter { DisplayName = "Ошибка", SeverityValue = "error" }
+    };
 
-    // Новый текст для вывода в TextBlock
     [ObservableProperty]
-    private string entriesText;
+    private LogSeverityFilter selectedSeverity;
+
+    [ObservableProperty]
+    private string searchText = string.Empty;
+
+    private ObservableCollection<SyslogEntry> allEntries = new(); // все данные
+
+    [ObservableProperty]
+    private ObservableCollection<SyslogEntry> entries = new(); // отображаемые данные
+
+    [ObservableProperty]
+    private ISeries[] severitySeries;
+    
+    [ObservableProperty]
+    private ISeries[] sourceSeries;
 
     public MainWindowViewModel()
     {
+        SelectedSeverity = SeverityOptions.First();
         LoadLog(); // автоматическая загрузка при запуске
     }
 
@@ -34,14 +55,50 @@ public partial class MainWindowViewModel : ViewModelBase
         {
             var parsed = _parser.ParseSyslog(logFilePath);
             parsed.Reverse();
-            Entries = new ObservableCollection<SyslogEntry>(parsed);
-            UpdateEntriesText();
+            allEntries = new ObservableCollection<SyslogEntry>(parsed);
+            ApplyFilters();
+            UpdateSeverityChart();
         }
     }
 
-    private void UpdateEntriesText()
+    partial void OnSearchTextChanged(string value)
     {
-        // Обновим EntriesText на основе данных в Entries
-        EntriesText = string.Join("\n", Entries.Select(e => $"{e.Timestamp} - {e.Host} - {e.Source} - {e.Message}"));
+        ApplyFilters();
+        UpdateSeverityChart();
     }
+
+    partial void OnSelectedSeverityChanged(LogSeverityFilter value)
+    {
+        ApplyFilters();
+        UpdateSeverityChart();
+    }
+
+    private void ApplyFilters()
+    {
+        var filtered = allEntries.Where(entry =>
+            (SelectedSeverity?.SeverityValue == null || entry.Severity == SelectedSeverity.SeverityValue) &&
+            (string.IsNullOrWhiteSpace(SearchText) ||
+             (entry.Message?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true ||
+              entry.Source?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) == true))
+        );
+
+        Entries = new ObservableCollection<SyslogEntry>(filtered);
+    }
+    public event Action? RequestChartRefresh;
+    private void UpdateSeverityChart()
+    {
+        var errorCount = Entries.Count(e => e.Severity == "error");
+        var warningCount = Entries.Count(e => e.Severity == "warning");
+        var infoCount = Entries.Count(e => e.Severity == "info");
+        
+        SeveritySeries = new ISeries[]
+        {
+            new PieSeries<double> { Values = new[] { (double)errorCount }, Name = "Ошибки" },
+            new PieSeries<double> { Values = new[] { (double)warningCount }, Name = "Предупреждения" },
+            new PieSeries<double> { Values = new[] { (double)infoCount }, Name = "Информация" },
+        };
+        
+        RequestChartRefresh?.Invoke();
+    }
+
 }

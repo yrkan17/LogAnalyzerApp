@@ -24,6 +24,9 @@
 /home/pavel/.nuget/packages/avalonia.x11/11.2.7/lib/net8.0/Avalonia.X11.dll
 /home/pavel/.nuget/packages/communitytoolkit.mvvm/8.2.1/lib/net6.0/CommunityToolkit.Mvvm.dll
 /home/pavel/.nuget/packages/harfbuzzsharp/7.3.0.3/lib/net6.0/HarfBuzzSharp.dll
+/home/pavel/.nuget/packages/livechartscore/2.0.0-rc5.4/lib/net8.0/LiveChartsCore.dll
+/home/pavel/.nuget/packages/livechartscore.skiasharpview.avalonia/2.0.0-rc5.4/lib/net8.0/LiveChartsCore.SkiaSharpView.Avalonia.dll
+/home/pavel/.nuget/packages/livechartscore.skiasharpview/2.0.0-rc5.4/lib/net8.0/LiveChartsCore.SkiaSharpView.dll
 /home/pavel/.nuget/packages/microcom.runtime/0.11.0/lib/net5.0/MicroCom.Runtime.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/Microsoft.CSharp.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/Microsoft.VisualBasic.Core.dll
@@ -33,6 +36,7 @@
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/mscorlib.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/netstandard.dll
 /home/pavel/.nuget/packages/skiasharp/2.88.9/lib/net6.0/SkiaSharp.dll
+/home/pavel/.nuget/packages/skiasharp.harfbuzz/2.88.9/lib/net6.0/SkiaSharp.HarfBuzz.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.AppContext.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Buffers.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.15/ref/net8.0/System.Collections.Concurrent.dll

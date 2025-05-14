@@ -1,6 +1,7 @@
 <Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:vm="using:LogAnalyzerApp.ViewModels"
+        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
@@ -13,8 +14,23 @@
     </Design.DataContext>
     
     <DockPanel>
-                <Button DockPanel.Dock="Top" Content="Обновить лог" Command="{Binding LoadLogCommand}" Margin="5" />
+        <lvc:PieChart 
+            DockPanel.Dock="Top"  
+            x:Name="SeverityChart"
+            Series="{Binding SeveritySeries}" 
+            Height="300" />
+        <Button DockPanel.Dock="Top" Content="Обновить лог" Command="{Binding LoadLogCommand}" Margin="5" />
 
+                <StackPanel DockPanel.Dock="Top" 
+                            Orientation="Horizontal" 
+                            Margin="20, 0">
+                    <ComboBox Width="250"
+                              ItemsSource="{Binding SeverityOptions}"
+                              SelectedItem="{Binding SelectedSeverity}" />
+
+                    <TextBox Width="250" Margin="10,0,0,0" Watermark="Поиск..." Text="{Binding SearchText}" />
+                </StackPanel>
+                
                 <!-- ListBox для отображения логов -->
                 <Grid Margin="20">
                     <Grid.RowDefinitions>
@@ -78,6 +94,8 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                 </Grid>
+                
+                
     </DockPanel>
 
 

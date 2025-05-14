@@ -135,3 +135,7 @@
 /home/pavel/LogAnalyzerApp/LogAnalyzerApp/obj/Debug/net8.0/LogAnalyzerApp.genruntimeconfig.cache
 /home/pavel/LogAnalyzerApp/LogAnalyzerApp/obj/Debug/net8.0/ref/LogAnalyzerApp.dll
 /home/pavel/LogAnalyzerApp/LogAnalyzerApp/obj/Debug/net8.0/LogAnalyzerApp.sourcelink.json
+/home/pavel/LogAnalyzerApp/LogAnalyzerApp/bin/Debug/net8.0/LiveChartsCore.dll
+/home/pavel/LogAnalyzerApp/LogAnalyzerApp/bin/Debug/net8.0/LiveChartsCore.SkiaSharpView.dll
+/home/pavel/LogAnalyzerApp/LogAnalyzerApp/bin/Debug/net8.0/LiveChartsCore.SkiaSharpView.Avalonia.dll
+/home/pavel/LogAnalyzerApp/LogAnalyzerApp/bin/Debug/net8.0/SkiaSharp.HarfBuzz.dll

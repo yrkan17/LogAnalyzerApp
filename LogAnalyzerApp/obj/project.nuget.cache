@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "2WLZrXhcMOQ=",
+  "dgSpecHash": "Of1bM8laiuw=",
   "success": true,
   "projectFilePath": "/home/pavel/LogAnalyzerApp/LogAnalyzerApp/LogAnalyzerApp.csproj",
   "expectedPackageFiles": [
@@ -26,8 +26,12 @@
     "/home/pavel/.nuget/packages/harfbuzzsharp.nativeassets.macos/7.3.0.3/harfbuzzsharp.nativeassets.macos.7.3.0.3.nupkg.sha512",
     "/home/pavel/.nuget/packages/harfbuzzsharp.nativeassets.webassembly/7.3.0.3/harfbuzzsharp.nativeassets.webassembly.7.3.0.3.nupkg.sha512",
     "/home/pavel/.nuget/packages/harfbuzzsharp.nativeassets.win32/7.3.0.3/harfbuzzsharp.nativeassets.win32.7.3.0.3.nupkg.sha512",
+    "/home/pavel/.nuget/packages/livechartscore/2.0.0-rc5.4/livechartscore.2.0.0-rc5.4.nupkg.sha512",
+    "/home/pavel/.nuget/packages/livechartscore.skiasharpview/2.0.0-rc5.4/livechartscore.skiasharpview.2.0.0-rc5.4.nupkg.sha512",
+    "/home/pavel/.nuget/packages/livechartscore.skiasharpview.avalonia/2.0.0-rc5.4/livechartscore.skiasharpview.avalonia.2.0.0-rc5.4.nupkg.sha512",
     "/home/pavel/.nuget/packages/microcom.runtime/0.11.0/microcom.runtime.0.11.0.nupkg.sha512",
     "/home/pavel/.nuget/packages/skiasharp/2.88.9/skiasharp.2.88.9.nupkg.sha512",
+    "/home/pavel/.nuget/packages/skiasharp.harfbuzz/2.88.9/skiasharp.harfbuzz.2.88.9.nupkg.sha512",
     "/home/pavel/.nuget/packages/skiasharp.nativeassets.linux/2.88.9/skiasharp.nativeassets.linux.2.88.9.nupkg.sha512",
     "/home/pavel/.nuget/packages/skiasharp.nativeassets.macos/2.88.9/skiasharp.nativeassets.macos.2.88.9.nupkg.sha512",
     "/home/pavel/.nuget/packages/skiasharp.nativeassets.webassembly/2.88.9/skiasharp.nativeassets.webassembly.2.88.9.nupkg.sha512",
