@@ -33,6 +33,9 @@ public class SyslogParserService
                         Source = match.Groups["source"].Value,
                         Message = match.Groups["message"].Value
                     };
+                    entry.Severity = entry.Message.Contains("error", StringComparison.OrdinalIgnoreCase) ? "error"
+                        : entry.Message.Contains("warn", StringComparison.OrdinalIgnoreCase) ? "warning"
+                        : "info";
                     entries.Add(entry);
                 }
                 catch

@@ -8,4 +8,5 @@ public class SyslogEntry
     public string? Host { get; set; }
     public string? Source { get; set; }
     public string? Message { get; set; }
+    public string? Severity { get; set; }
 }

@@ -8,21 +8,78 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="LogAnalyzerApp">
-
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
     
-    
-        <DockPanel>
+    <DockPanel>
                 <Button DockPanel.Dock="Top" Content="Обновить лог" Command="{Binding LoadLogCommand}" Margin="5" />
 
-                <!-- Добавим ListBox для отображения записей -->
-                <ListBox ItemsSource="{Binding Entries}" Margin="5">
-                        <ListBox.ItemTemplate>
+                <!-- ListBox для отображения логов -->
+                <Grid Margin="20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"/> <!-- Заголовки -->
+                        <RowDefinition Height="*"/>    <!-- ListBox -->
+                    </Grid.RowDefinitions>
+                
+                    <!-- Заголовки -->
+                    <Border Background="#000096" CornerRadius="6" Margin="0,0,0,8">
+                        <Grid Margin="20,0"> <!-- Используем Margin вместо Padding -->
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Время" Foreground="White" FontWeight="Bold" VerticalAlignment="Center"/>
+                            <TextBlock Text="Хост" Foreground="White" FontWeight="Bold" Grid.Column="1" VerticalAlignment="Center"/>
+                            <TextBlock Text="Источник" Foreground="White" FontWeight="Bold" Grid.Column="2" VerticalAlignment="Center"/>
+                            <TextBlock Text="Сообщение" Foreground="White" FontWeight="Bold" Grid.Column="3" VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                
+                    <!-- Список логов -->
+                        <ListBox ItemsSource="{Binding Entries}" 
+                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                 Grid.Row="1" 
+                                 Background="#F5F5F5" 
+                                 CornerRadius="6" 
+                                 BorderBrush="#000096" 
+                                 BorderThickness="1">
+                            <ListBox.ItemTemplate>
                                 <DataTemplate>
-                                        <TextBlock Text="{Binding Message}" />
+                                        <Grid Margin="6,0"
+                                              HorizontalAlignment="Stretch">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="200"/>
+                                                <ColumnDefinition Width="150"/>
+                                                <ColumnDefinition Width="150"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                        
+                                            <TextBlock Text="{Binding Timestamp}" 
+                                                       VerticalAlignment="Center"
+                                                       Foreground="{Binding Severity, Converter={StaticResource SeverityToBrushConverter}}"/>
+                                            <TextBlock Text="{Binding Host}" 
+                                                       Grid.Column="1" 
+                                                       VerticalAlignment="Center"
+                                                       Foreground="{Binding Severity, Converter={StaticResource SeverityToBrushConverter}}"/>
+                                            <TextBlock Text="{Binding Source}" 
+                                                       Grid.Column="2" 
+                                                       VerticalAlignment="Center"
+                                                       Foreground="{Binding Severity, Converter={StaticResource SeverityToBrushConverter}}"/>
+                                            <TextBlock Text="{Binding Message}" 
+                                                       Grid.Column="3" 
+                                                       VerticalAlignment="Center" 
+                                                       Foreground="{Binding Severity, Converter={StaticResource SeverityToBrushConverter}}"
+                                                       TextWrapping="Wrap"/>
+                                        </Grid>
                                 </DataTemplate>
-                        </ListBox.ItemTemplate>
-                </ListBox>
-        </DockPanel>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                </Grid>
+    </DockPanel>
+
 
 
 </Window>

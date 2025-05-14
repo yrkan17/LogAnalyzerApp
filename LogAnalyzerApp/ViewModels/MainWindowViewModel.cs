@@ -33,6 +33,7 @@ public partial class MainWindowViewModel : ViewModelBase
         if (File.Exists(logFilePath))
         {
             var parsed = _parser.ParseSyslog(logFilePath);
+            parsed.Reverse();
             Entries = new ObservableCollection<SyslogEntry>(parsed);
             UpdateEntriesText();
         }
