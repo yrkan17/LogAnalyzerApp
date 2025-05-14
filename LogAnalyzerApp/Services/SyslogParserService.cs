@@ -1,0 +1,54 @@
+using LogAnalyzerApp.Models;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.RegularExpressions;
+using System.Globalization;
+
+namespace LogAnalyzerApp.Services;
+
+public class SyslogParserService
+{
+    private static readonly Regex SyslogRegex = new Regex(
+        @"^(?<date>\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2})\s+(?<host>\S+)\s+(?<source>[^\[:]+)(?:\[\d+\])?:\s(?<message>.+)$",
+        RegexOptions.Compiled);
+
+    public List<SyslogEntry> ParseSyslog(string filePath)
+    {
+        var entries = new List<SyslogEntry>();
+
+        foreach (var line in File.ReadLines(filePath))
+        {
+            var match = SyslogRegex.Match(line);
+            if (match.Success)
+            {
+                try
+                {
+                    var dateString = match.Groups["date"].Value;
+                    var timestamp = ParseSyslogDate(dateString);
+                    var entry = new SyslogEntry
+                    {
+                        Timestamp = timestamp,
+                        Host = match.Groups["host"].Value,
+                        Source = match.Groups["source"].Value,
+                        Message = match.Groups["message"].Value
+                    };
+                    entries.Add(entry);
+                }
+                catch
+                {
+                    // Пропуск строки при ошибке разбора
+                }
+            }
+        }
+
+        return entries;
+    }
+
+    private DateTime ParseSyslogDate(string dateStr)
+    {
+        var currentYear = DateTime.Now.Year;
+        var fullDateStr = $"{dateStr} {currentYear}";
+        return DateTime.ParseExact(fullDateStr, "MMM d HH:mm:ss yyyy", CultureInfo.InvariantCulture);
+    }
+}

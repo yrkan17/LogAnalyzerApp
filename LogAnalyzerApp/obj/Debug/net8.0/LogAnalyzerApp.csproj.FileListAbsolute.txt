@@ -134,3 +134,4 @@
 /home/pavel/LogAnalyzerApp/LogAnalyzerApp/obj/Debug/net8.0/LogAnalyzerApp.csproj.CopyComplete
 /home/pavel/LogAnalyzerApp/LogAnalyzerApp/obj/Debug/net8.0/LogAnalyzerApp.genruntimeconfig.cache
 /home/pavel/LogAnalyzerApp/LogAnalyzerApp/obj/Debug/net8.0/ref/LogAnalyzerApp.dll
+/home/pavel/LogAnalyzerApp/LogAnalyzerApp/obj/Debug/net8.0/LogAnalyzerApp.sourcelink.json
