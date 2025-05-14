@@ -57,20 +57,20 @@ public partial class MainWindowViewModel : ViewModelBase
             parsed.Reverse();
             allEntries = new ObservableCollection<SyslogEntry>(parsed);
             ApplyFilters();
-            UpdateSeverityChart();
+            UpdateAllCharts();
         }
     }
 
     partial void OnSearchTextChanged(string value)
     {
         ApplyFilters();
-        UpdateSeverityChart();
+        UpdateAllCharts();
     }
 
     partial void OnSelectedSeverityChanged(LogSeverityFilter value)
     {
         ApplyFilters();
-        UpdateSeverityChart();
+        UpdateAllCharts();
     }
 
     private void ApplyFilters()
@@ -84,7 +84,15 @@ public partial class MainWindowViewModel : ViewModelBase
 
         Entries = new ObservableCollection<SyslogEntry>(filtered);
     }
-    public event Action? RequestChartRefresh;
+    public event Action? RequestChartsRefresh;
+
+    private void UpdateAllCharts()
+    {
+        UpdateSeverityChart();
+        UpdateSourceChart();
+        RequestChartsRefresh?.Invoke();
+    }
+    
     private void UpdateSeverityChart()
     {
         var errorCount = Entries.Count(e => e.Severity == "error");
@@ -97,8 +105,23 @@ public partial class MainWindowViewModel : ViewModelBase
             new PieSeries<double> { Values = new[] { (double)warningCount }, Name = "Предупреждения" },
             new PieSeries<double> { Values = new[] { (double)infoCount }, Name = "Информация" },
         };
-        
-        RequestChartRefresh?.Invoke();
+    }
+
+    private void UpdateSourceChart()
+    {
+        var grouped = Entries
+            .GroupBy(e => e.Source)
+            .OrderByDescending(g => g.Count())
+            .Select(g => new { Source = g.Key ?? "Неизвестно", Count = g.Count() })
+            .ToList();
+
+        SourceSeries = grouped
+            .Select(g => new PieSeries<double>
+            {
+                Values = new[] { (double)g.Count },
+                Name = g.Source
+            })
+            .ToArray();
     }
 
 }

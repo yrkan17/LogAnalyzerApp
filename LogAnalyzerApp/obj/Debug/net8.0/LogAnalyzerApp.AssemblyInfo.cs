@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LogAnalyzerApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dfde909c7a85ee2b92e8a077c97a97aa234ac5f5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+dc407f909c4c992a73a4f25041306188b58c62b4")]
 [assembly: System.Reflection.AssemblyProductAttribute("LogAnalyzerApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LogAnalyzerApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

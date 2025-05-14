@@ -14,10 +14,13 @@ public partial class MainWindow : Window
         {
             if (this.DataContext is MainWindowViewModel vm)
             {
-                vm.RequestChartRefresh += () =>
+                vm.RequestChartsRefresh += () =>
                 {
                     SeverityChart.IsVisible = false;
                     SeverityChart.IsVisible = true;
+                    
+                    SourceChart.IsVisible = false;
+                    SourceChart.IsVisible = true;
                 };
             }
         };
