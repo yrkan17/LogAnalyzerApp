@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Rkgcyoiqhhc=",
+  "dgSpecHash": "FndtwSlIOTG245IhdKk8Lm86CybN4nreHTwnX6zG8twRW3mHTAHHhJrZQRKTQH7MIiSDut4F3rC4Jz4uYMOr6A==",
   "success": true,
   "projectFilePath": "/home/pavel/LogAnalyzerApp/LogAnalyzerApp/LogAnalyzerApp.csproj",
   "expectedPackageFiles": [
@@ -39,7 +39,10 @@
     "/home/pavel/.nuget/packages/skiasharp.nativeassets.win32/2.88.9/skiasharp.nativeassets.win32.2.88.9.nupkg.sha512",
     "/home/pavel/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
     "/home/pavel/.nuget/packages/textcopy/6.2.1/textcopy.6.2.1.nupkg.sha512",
-    "/home/pavel/.nuget/packages/tmds.dbus.protocol/0.20.0/tmds.dbus.protocol.0.20.0.nupkg.sha512"
+    "/home/pavel/.nuget/packages/tmds.dbus.protocol/0.20.0/tmds.dbus.protocol.0.20.0.nupkg.sha512",
+    "/home/pavel/.nuget/packages/microsoft.netcore.app.runtime.linux-x64/8.0.16/microsoft.netcore.app.runtime.linux-x64.8.0.16.nupkg.sha512",
+    "/home/pavel/.nuget/packages/microsoft.aspnetcore.app.runtime.linux-x64/8.0.16/microsoft.aspnetcore.app.runtime.linux-x64.8.0.16.nupkg.sha512",
+    "/home/pavel/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.16/microsoft.netcore.app.host.linux-x64.8.0.16.nupkg.sha512"
   ],
   "logs": []
 }

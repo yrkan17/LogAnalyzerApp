@@ -7,7 +7,7 @@
         mc:Ignorable="d" d:DesignWidth="1536" d:DesignHeight="864"
         x:Class="LogAnalyzerApp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/images.png"
         Title="LogAnalyzerApp"
         Width="1536"
         Height="876"
