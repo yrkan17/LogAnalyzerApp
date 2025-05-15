@@ -11,6 +11,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         
+        // После открытия формы подписываемся на событие обновления графиков
         this.Opened += (_, _) =>
         {
             if (this.DataContext is MainWindowViewModel vm)
@@ -30,11 +31,12 @@ public partial class MainWindow : Window
         };
     }
     
+    // Обработчик события езменения выбранного лога
     private async void ListBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
     {
         if (sender is Avalonia.Controls.ListBox listBox && listBox.SelectedItem is SyslogEntry entry)
         {
-            ClipboardService.SetText(entry.Message);
+            ClipboardService.SetText(entry.Message); // Копируем в буфер обмена
             
         }
     }

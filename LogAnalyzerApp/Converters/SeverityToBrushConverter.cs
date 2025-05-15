@@ -5,6 +5,9 @@ using Avalonia.Media;
 
 namespace LogAnalyzerApp.Converters;
 
+/// <summary>
+/// Конвертер типа лога в цвет
+/// </summary>
 public class SeverityToBrushConverter : IValueConverter
 {
     public object Convert(object? value, Type targetType, object? parameter, CultureInfo culture)

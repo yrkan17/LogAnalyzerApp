@@ -13,12 +13,19 @@ using LoggingLibrary;
 
 namespace LogAnalyzerApp.ViewModels;
 
+/// <summary>
+/// Основная модель представления для главного окна приложения.
+/// Содержит данные, команды и логику отображения/фильтрации/обновления логов и графиков.
+/// </summary>
 public partial class MainWindowViewModel : ViewModelBase
 {
     private readonly SyslogParserService _parser = new();
 
     private readonly string logFilePath = "/var/log/syslog"; // путь к syslog
 
+    /// <summary>
+    /// Доступные фильтры по уровню серьезности логов.
+    /// </summary>
     public ObservableCollection<LogSeverityFilter> SeverityOptions { get; } = new()
     {
         new LogSeverityFilter { DisplayName = "Все", SeverityValue = null },
@@ -33,32 +40,59 @@ public partial class MainWindowViewModel : ViewModelBase
     [ObservableProperty]
     private string searchText = string.Empty;
 
-    private ObservableCollection<SyslogEntry> allEntries = new(); // все данные
+    /// <summary>
+    /// Все загруженные записи логов.
+    /// </summary>
+    private ObservableCollection<SyslogEntry> allEntries = new();
 
+    /// <summary>
+    /// Отфильтрованные записи, отображаемые в UI.
+    /// </summary>
     [ObservableProperty]
-    private ObservableCollection<SyslogEntry> entries = new(); // отображаемые данные
+    private ObservableCollection<SyslogEntry> entries = new();
 
+    /// <summary>
+    /// Серии данных для круговой диаграммы по серьезности логов.
+    /// </summary>
     [ObservableProperty]
     private ISeries[] severitySeries;
-    
+
+    /// <summary>
+    /// Серии данных для круговой диаграммы по источникам логов.
+    /// </summary>
     [ObservableProperty]
     private ISeries[] sourceSeries;
-    
+
+    /// <summary>
+    /// Серии данных для столбчатой диаграммы по часам.
+    /// </summary>
     [ObservableProperty]
     private ISeries[] timeFrequencySeries;
 
+    /// <summary>
+    /// Оси X для диаграммы частоты логов по времени.
+    /// </summary>
     [ObservableProperty]
     private Axis[] timeFrequencyXAxes;
 
+    /// <summary>
+    /// Оси Y для диаграммы частоты логов по времени.
+    /// </summary>
     [ObservableProperty]
     private Axis[] timeFrequencyYAxes;
 
+    /// <summary>
+    /// Конструктор. Устанавливает значения по умолчанию и загружает логи.
+    /// </summary>
     public MainWindowViewModel()
     {
         SelectedSeverity = SeverityOptions.First();
         LoadLogCommand.Execute(null); // автоматическая загрузка при запуске
     }
 
+    /// <summary>
+    /// Загружает лог-файл и парсит его в фоне.
+    /// </summary>
     [RelayCommand]
     private async Task LoadLog()
     {
@@ -71,33 +105,34 @@ public partial class MainWindowViewModel : ViewModelBase
                 SimpleLogger.Instance.Info("Логи загружены");
                 return result;
             });
-            
+
             allEntries = new ObservableCollection<SyslogEntry>(parsed);
             ApplyFilters();
             UpdateAllCharts();
-            
-            
         }
     }
-    
-    [RelayCommand]
-    private void SearchTextLostFocus()
-    {
-        UpdateAllCharts();
-    }
 
+    /// <summary>
+    /// Обновляет данные при изменении текста поиска.
+    /// </summary>
     partial void OnSearchTextChanged(string value)
     {
         ApplyFilters();
         UpdateAllCharts();
     }
 
+    /// <summary>
+    /// Обновляет данные при изменении выбранного фильтра серьезности.
+    /// </summary>
     partial void OnSelectedSeverityChanged(LogSeverityFilter value)
     {
         ApplyFilters();
         UpdateAllCharts();
     }
 
+    /// <summary>
+    /// Применяет фильтрацию по серьезности и тексту.
+    /// </summary>
     private void ApplyFilters()
     {
         var filtered = allEntries.Where(entry =>
@@ -110,8 +145,15 @@ public partial class MainWindowViewModel : ViewModelBase
         Entries = new ObservableCollection<SyslogEntry>(filtered);
         SimpleLogger.Instance.Info("Фмльтр применен");
     }
+
+    /// <summary>
+    /// Событие запроса на перерисовку графиков.
+    /// </summary>
     public event Action? RequestChartsRefresh;
 
+    /// <summary>
+    /// Обновляет все графики и вызывает событие перерисовки.
+    /// </summary>
     private void UpdateAllCharts()
     {
         UpdateSeverityChart();
@@ -120,13 +162,16 @@ public partial class MainWindowViewModel : ViewModelBase
         RequestChartsRefresh?.Invoke();
         SimpleLogger.Instance.Info("Графики обновлены");
     }
-    
+
+    /// <summary>
+    /// Обновляет круговую диаграмму по уровням серьезности логов.
+    /// </summary>
     private void UpdateSeverityChart()
     {
         var errorCount = Entries.Count(e => e.Severity == "error");
         var warningCount = Entries.Count(e => e.Severity == "warning");
         var infoCount = Entries.Count(e => e.Severity == "info");
-        
+
         SeveritySeries = new ISeries[]
         {
             new PieSeries<double> { Values = new[] { (double)errorCount }, Name = "Ошибки" },
@@ -135,6 +180,9 @@ public partial class MainWindowViewModel : ViewModelBase
         };
     }
 
+    /// <summary>
+    /// Обновляет круговую диаграмму по источникам логов.
+    /// </summary>
     private void UpdateSourceChart()
     {
         var grouped = Entries
@@ -153,7 +201,10 @@ public partial class MainWindowViewModel : ViewModelBase
             })
             .ToArray();
     }
-    
+
+    /// <summary>
+    /// Обновляет столбчатую диаграмму частоты логов по часам.
+    /// </summary>
     private void UpdateTimeFrequencyChart()
     {
         var grouped = Entries
@@ -180,12 +231,8 @@ public partial class MainWindowViewModel : ViewModelBase
                 Labels = labels,
                 LabelsRotation = 45,
                 TextSize = 10
-                
             }
         };
-
-        
-        
 
         TimeFrequencyYAxes = new Axis[]
         {
@@ -195,5 +242,4 @@ public partial class MainWindowViewModel : ViewModelBase
             }
         };
     }
-
 }

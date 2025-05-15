@@ -8,12 +8,20 @@ using LoggingLibrary;
 
 namespace LogAnalyzerApp.Services;
 
+/// <summary>
+/// Парсер системнвх логов
+/// </summary>
 public class SyslogParserService
 {
     private static readonly Regex SyslogRegex = new Regex(
         @"^(?<date>\w{3}\s+\d{1,2}\s+\d{2}:\d{2}:\d{2})\s+(?<host>\S+)\s+(?<source>[^\[:]+)(?:\[\d+\])?:\s(?<message>.+)$",
         RegexOptions.Compiled);
 
+    /// <summary>
+    /// Парсит файл расположенный по пути
+    /// </summary>
+    /// <param name="filePath">Путь к файлу</param>
+    /// <returns>Список логов</returns>
     public List<SyslogEntry> ParseSyslog(string filePath)
     {
         var entries = new List<SyslogEntry>();
