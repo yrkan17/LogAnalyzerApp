@@ -68,6 +68,7 @@ public partial class MainWindowViewModel : ViewModelBase
             {
                 var result = _parser.ParseSyslog(logFilePath);
                 result.Reverse();
+                SimpleLogger.Instance.Info("Логи загружены");
                 return result;
             });
             
@@ -75,7 +76,7 @@ public partial class MainWindowViewModel : ViewModelBase
             ApplyFilters();
             UpdateAllCharts();
             
-            SimpleLogger.Instance.Info("Логи загружены");
+            
         }
     }
     
@@ -107,6 +108,7 @@ public partial class MainWindowViewModel : ViewModelBase
         );
 
         Entries = new ObservableCollection<SyslogEntry>(filtered);
+        SimpleLogger.Instance.Info("Фмльтр применен");
     }
     public event Action? RequestChartsRefresh;
 
@@ -116,6 +118,7 @@ public partial class MainWindowViewModel : ViewModelBase
         UpdateSourceChart();
         UpdateTimeFrequencyChart();
         RequestChartsRefresh?.Invoke();
+        SimpleLogger.Instance.Info("Графики обновлены");
     }
     
     private void UpdateSeverityChart()

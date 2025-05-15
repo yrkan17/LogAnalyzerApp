@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Globalization;
+using LoggingLibrary;
 
 namespace LogAnalyzerApp.Services;
 
@@ -41,6 +42,7 @@ public class SyslogParserService
                 catch
                 {
                     // Пропуск строки при ошибке разбора
+                    SimpleLogger.Instance.Error("Ошибка парсинга строки логов");
                 }
             }
         }
