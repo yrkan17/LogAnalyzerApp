@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogAnalyzerApp", "LogAnalyz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingLibrary", "..\LoggingLibrary\LoggingLibrary.csproj", "{CC9C7CC7-4945-46BB-A8D3-5500C7DA5981}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogAnalyzerApp.Test", "LogAnalyzerApp.Test\LogAnalyzerApp.Test.csproj", "{38BBE24D-CD2A-48FE-97F8-AAFB81D646E3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{CC9C7CC7-4945-46BB-A8D3-5500C7DA5981}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC9C7CC7-4945-46BB-A8D3-5500C7DA5981}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC9C7CC7-4945-46BB-A8D3-5500C7DA5981}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38BBE24D-CD2A-48FE-97F8-AAFB81D646E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38BBE24D-CD2A-48FE-97F8-AAFB81D646E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38BBE24D-CD2A-48FE-97F8-AAFB81D646E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38BBE24D-CD2A-48FE-97F8-AAFB81D646E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
