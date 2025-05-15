@@ -4,12 +4,13 @@
         xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.Avalonia;assembly=LiveChartsCore.SkiaSharpView.Avalonia"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        mc:Ignorable="d" d:DesignWidth="1536" d:DesignHeight="864"
         x:Class="LogAnalyzerApp.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="LogAnalyzerApp"
-        
+        Width="1536"
+        Height="864"
         >
     
     <Design.DataContext>
@@ -20,8 +21,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*" />
             <ColumnDefinition Width="6*" />
-            <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
         
         <Grid Grid.Column="0">
@@ -59,7 +60,7 @@
                     Command="{Binding LoadLogCommand}" 
                     Margin="10,0,0,0"
                     CornerRadius="4"
-                    Height="34"
+                    Height="36"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"/>
             </Grid>
@@ -139,12 +140,24 @@
                 <lvc:PieChart 
                     x:Name="SeverityChart"
                     Series="{Binding SeveritySeries}" 
+                    Background="Aqua"
                     Height="200"/>
+                
                 <lvc:PieChart 
                     x:Name="SourceChart"
                     Series="{Binding SourceSeries}" 
-                    Height="400"
+                    Height="200"
+                    Background="Aqua"
                     Margin="10, 30"/>
+                
+                <lvc:CartesianChart 
+                    x:Name="TimeFrequencyChart"
+                    Series="{Binding TimeFrequencySeries}"
+                    XAxes="{Binding TimeFrequencyXAxes}"
+                    YAxes="{Binding TimeFrequencyYAxes}"
+                    Height="400"
+                    Background="Aqua"
+                    Margin="10"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

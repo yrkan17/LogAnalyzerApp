@@ -41,6 +41,15 @@ public partial class MainWindowViewModel : ViewModelBase
     
     [ObservableProperty]
     private ISeries[] sourceSeries;
+    
+    [ObservableProperty]
+    private ISeries[] timeFrequencySeries;
+
+    [ObservableProperty]
+    private Axis[] timeFrequencyXAxes;
+
+    [ObservableProperty]
+    private Axis[] timeFrequencyYAxes;
 
     public MainWindowViewModel()
     {
@@ -90,6 +99,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         UpdateSeverityChart();
         UpdateSourceChart();
+        UpdateTimeFrequencyChart();
         RequestChartsRefresh?.Invoke();
     }
     
@@ -110,9 +120,11 @@ public partial class MainWindowViewModel : ViewModelBase
     private void UpdateSourceChart()
     {
         var grouped = Entries
-            .GroupBy(e => e.Source)
+            .Where(e => !string.IsNullOrWhiteSpace(e.Source))
+            .GroupBy(e => e.Source!.Trim())
+            .Where(g => g.Count() > 1)
             .OrderByDescending(g => g.Count())
-            .Select(g => new { Source = g.Key ?? "Неизвестно", Count = g.Count() })
+            .Select(g => new { Source = g.Key.Length > 20 ? g.Key.Substring(0, 20) + "..." : g.Key, Count = g.Count() })
             .ToList();
 
         SourceSeries = grouped
@@ -122,6 +134,44 @@ public partial class MainWindowViewModel : ViewModelBase
                 Name = g.Source
             })
             .ToArray();
+    }
+    
+    private void UpdateTimeFrequencyChart()
+    {
+        var grouped = Entries
+            .GroupBy(e => e.Timestamp.Hour)
+            .OrderBy(g => g.Key)
+            .ToDictionary(g => g.Key, g => g.Count());
+
+        var labels = Enumerable.Range(0, 24).Select(h => h.ToString("D2") + ":00").ToArray();
+        var values = Enumerable.Range(0, 24).Select(h => grouped.ContainsKey(h) ? grouped[h] : 0).Select(v => (double)v).ToArray();
+
+        TimeFrequencySeries = new ISeries[]
+        {
+            new ColumnSeries<double>
+            {
+                Values = values,
+                Name = "Логи по часам"
+            }
+        };
+
+        TimeFrequencyXAxes = new Axis[]
+        {
+            new Axis
+            {
+                Labels = labels,
+                LabelsRotation = 45,
+                Name = "Время"
+            }
+        };
+
+        TimeFrequencyYAxes = new Axis[]
+        {
+            new Axis
+            {
+                Name = "Количество"
+            }
+        };
     }
 
 }

@@ -21,6 +21,9 @@ public partial class MainWindow : Window
                     
                     SourceChart.IsVisible = false;
                     SourceChart.IsVisible = true;
+
+                    TimeFrequencyChart.IsVisible = false;
+                    TimeFrequencyChart.IsVisible =  true;
                 };
             }
         };
