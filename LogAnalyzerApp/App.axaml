@@ -15,7 +15,6 @@
     </Application.Styles>
              
      <Application.Resources>
-         <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
          <converters:SeverityToBrushConverter x:Key="SeverityToBrushConverter" />
      </Application.Resources>
 </Application>
