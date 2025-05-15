@@ -30,6 +30,7 @@
 /home/pavel/LoggingLibrary/obj/Debug/net8.0/ref/LoggingLibrary.dll
 /home/pavel/.nuget/packages/microcom.runtime/0.11.0/lib/net5.0/MicroCom.Runtime.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.16/ref/net8.0/Microsoft.CSharp.dll
+/home/pavel/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/lib/net7.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.16/ref/net8.0/Microsoft.VisualBasic.Core.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.16/ref/net8.0/Microsoft.VisualBasic.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.16/ref/net8.0/Microsoft.Win32.Primitives.dll
@@ -194,5 +195,6 @@
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.16/ref/net8.0/System.Xml.XmlSerializer.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.16/ref/net8.0/System.Xml.XPath.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.16/ref/net8.0/System.Xml.XPath.XDocument.dll
+/home/pavel/.nuget/packages/textcopy/6.2.1/lib/net6.0/TextCopy.dll
 /home/pavel/.nuget/packages/tmds.dbus.protocol/0.20.0/lib/net8.0/Tmds.DBus.Protocol.dll
 /usr/lib/dotnet/packs/Microsoft.NETCore.App.Ref/8.0.16/ref/net8.0/WindowsBase.dll

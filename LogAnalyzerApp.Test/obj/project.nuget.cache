@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "49zJpBItBXE=",
+  "dgSpecHash": "78Jpj+ltFNc=",
   "success": true,
   "projectFilePath": "/home/pavel/LogAnalyzerApp/LogAnalyzerApp.Test/LogAnalyzerApp.Test.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,7 @@
     "/home/pavel/.nuget/packages/livechartscore.skiasharpview.avalonia/2.0.0-rc5.4/livechartscore.skiasharpview.avalonia.2.0.0-rc5.4.nupkg.sha512",
     "/home/pavel/.nuget/packages/microcom.runtime/0.11.0/microcom.runtime.0.11.0.nupkg.sha512",
     "/home/pavel/.nuget/packages/microsoft.codecoverage/17.6.0/microsoft.codecoverage.17.6.0.nupkg.sha512",
+    "/home/pavel/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/7.0.0/microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
     "/home/pavel/.nuget/packages/microsoft.net.test.sdk/17.6.0/microsoft.net.test.sdk.17.6.0.nupkg.sha512",
     "/home/pavel/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/home/pavel/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
@@ -118,6 +119,7 @@
     "/home/pavel/.nuget/packages/system.threading.timer/4.3.0/system.threading.timer.4.3.0.nupkg.sha512",
     "/home/pavel/.nuget/packages/system.xml.readerwriter/4.3.0/system.xml.readerwriter.4.3.0.nupkg.sha512",
     "/home/pavel/.nuget/packages/system.xml.xdocument/4.3.0/system.xml.xdocument.4.3.0.nupkg.sha512",
+    "/home/pavel/.nuget/packages/textcopy/6.2.1/textcopy.6.2.1.nupkg.sha512",
     "/home/pavel/.nuget/packages/tmds.dbus.protocol/0.20.0/tmds.dbus.protocol.0.20.0.nupkg.sha512",
     "/home/pavel/.nuget/packages/xunit/2.4.2/xunit.2.4.2.nupkg.sha512",
     "/home/pavel/.nuget/packages/xunit.abstractions/2.0.3/xunit.abstractions.2.0.3.nupkg.sha512",

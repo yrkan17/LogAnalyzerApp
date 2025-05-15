@@ -1,5 +1,6 @@
-using System;
 using Avalonia.Controls;
+using TextCopy;
+using LogAnalyzerApp.Models;
 using LogAnalyzerApp.ViewModels;
 
 namespace LogAnalyzerApp.Views;
@@ -27,5 +28,14 @@ public partial class MainWindow : Window
                 };
             }
         };
+    }
+    
+    private async void ListBox_SelectionChanged(object? sender, SelectionChangedEventArgs e)
+    {
+        if (sender is Avalonia.Controls.ListBox listBox && listBox.SelectedItem is SyslogEntry entry)
+        {
+            ClipboardService.SetText(entry.Message);
+            
+        }
     }
 }

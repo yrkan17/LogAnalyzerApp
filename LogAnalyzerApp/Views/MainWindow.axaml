@@ -93,6 +93,7 @@
                 <ListBox 
                     Grid.Row="1" 
                     ItemsSource="{Binding Entries}" 
+                    SelectionChanged="ListBox_SelectionChanged"
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
                     Background="White" 
                     CornerRadius="6" 
