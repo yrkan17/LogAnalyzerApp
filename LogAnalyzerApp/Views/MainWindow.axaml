@@ -10,7 +10,9 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="LogAnalyzerApp"
         Width="1536"
-        Height="864"
+        Height="876"
+        MinWidth="920"
+        MinHeight="250"
         >
     
     <Design.DataContext>
@@ -21,8 +23,8 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10*" />
-            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="70*" />
+            <ColumnDefinition Width="30*" />
         </Grid.ColumnDefinitions>
         
         <Grid Grid.Column="0">
@@ -92,7 +94,7 @@
                     Grid.Row="1" 
                     ItemsSource="{Binding Entries}" 
                     ScrollViewer.VerticalScrollBarVisibility="Auto"
-                    Background="#F5F5F5" 
+                    Background="White" 
                     CornerRadius="6" 
                     BorderBrush="#000096" 
                     BorderThickness="1">
@@ -137,27 +139,38 @@
         
         <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
             <StackPanel>
+                <TextBlock
+                    Text="Распределение логов по типам"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Center"
+                    Margin="0,20,0, 0"/>
                 <lvc:PieChart 
                     x:Name="SeverityChart"
                     Series="{Binding SeveritySeries}" 
-                    Background="Aqua"
-                    Height="200"/>
+                    Height="225"/>
                 
+                <TextBlock
+                    Text="Источники логов"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Center"
+                    Margin="0,10,0, 0"/>
                 <lvc:PieChart 
                     x:Name="SourceChart"
                     Series="{Binding SourceSeries}" 
-                    Height="200"
-                    Background="Aqua"
-                    Margin="10, 30"/>
+                    Height="225"/>
                 
+                <TextBlock
+                    Text="Частота логов по времени"
+                    FontWeight="Bold"
+                    HorizontalAlignment="Center"
+                    Margin="0,10,0, 0"/>
                 <lvc:CartesianChart 
                     x:Name="TimeFrequencyChart"
                     Series="{Binding TimeFrequencySeries}"
                     XAxes="{Binding TimeFrequencyXAxes}"
                     YAxes="{Binding TimeFrequencyYAxes}"
-                    Height="400"
-                    Background="Aqua"
-                    Margin="10"/>
+                    Height="350"
+                    Margin="0, 0, 0, 20"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>

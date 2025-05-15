@@ -8,6 +8,9 @@ using System.IO;
 using System.Linq;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using LiveChartsCore.SkiaSharpView.Drawing;
+using SkiaSharp;
 
 namespace LogAnalyzerApp.ViewModels;
 
@@ -161,15 +164,19 @@ public partial class MainWindowViewModel : ViewModelBase
             {
                 Labels = labels,
                 LabelsRotation = 45,
-                Name = "Время"
+                TextSize = 10
+                
             }
         };
+
+        
+        
 
         TimeFrequencyYAxes = new Axis[]
         {
             new Axis
             {
-                Name = "Количество"
+                TextSize = 10
             }
         };
     }
