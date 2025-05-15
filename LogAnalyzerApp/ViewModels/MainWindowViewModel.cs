@@ -6,11 +6,10 @@ using LogAnalyzerApp.Services;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
-using LiveChartsCore.SkiaSharpView.Painting;
-using LiveChartsCore.SkiaSharpView.Drawing;
-using SkiaSharp;
+using LoggingLibrary;
 
 namespace LogAnalyzerApp.ViewModels;
 
@@ -57,20 +56,33 @@ public partial class MainWindowViewModel : ViewModelBase
     public MainWindowViewModel()
     {
         SelectedSeverity = SeverityOptions.First();
-        LoadLog(); // автоматическая загрузка при запуске
+        LoadLogCommand.Execute(null); // автоматическая загрузка при запуске
     }
 
     [RelayCommand]
-    private void LoadLog()
+    private async Task LoadLog()
     {
         if (File.Exists(logFilePath))
         {
-            var parsed = _parser.ParseSyslog(logFilePath);
-            parsed.Reverse();
+            var parsed = await Task.Run(() =>
+            {
+                var result = _parser.ParseSyslog(logFilePath);
+                result.Reverse();
+                return result;
+            });
+            
             allEntries = new ObservableCollection<SyslogEntry>(parsed);
             ApplyFilters();
             UpdateAllCharts();
+            
+            SimpleLogger.Instance.Info("Логи загружены");
         }
+    }
+    
+    [RelayCommand]
+    private void SearchTextLostFocus()
+    {
+        UpdateAllCharts();
     }
 
     partial void OnSearchTextChanged(string value)
